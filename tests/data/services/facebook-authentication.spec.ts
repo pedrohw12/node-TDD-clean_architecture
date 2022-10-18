@@ -1,3 +1,4 @@
+import { LoadFacebookUser, LoadFacebookUserAPi } from '@/data/contracts/apis'
 import { AuthenticationError } from '@/domain/errors'
 import { FacebookAuthentication } from '@/domain/features'
 
@@ -10,20 +11,6 @@ class FacebookAuthenticationService {
     await this.loadFacebookUserApi.loadUser(params)
     return new AuthenticationError()
   }
-}
-
-interface LoadFacebookUser {
-  loadUser: (
-    params: LoadFacebookUserAPi.Params
-  ) => Promise<LoadFacebookUserAPi.Result>
-}
-
-namespace LoadFacebookUserAPi {
-  export type Params = {
-    token: string
-  }
-
-  export type Result = undefined
 }
 
 class LoadFacebookUserApiSpy implements LoadFacebookUser {
